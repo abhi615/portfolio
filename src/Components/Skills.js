@@ -33,7 +33,7 @@ export const Skills = () => {
                 <div className="col-12">
                     <div className="skill-bx wow zoomIn">
                         <h2>Skills</h2>
-                        <p>.<br></br> Lorem Ipsum has been the industry's standard dummy text.</p>
+                        <p>.<br></br> As a passionate and skilled developer, I specialize in crafting dynamic and responsive web applications. With expertise in below technology</p>
                         <Carousel responsive={responsive} infinite={true} className="owl-carousel owl-theme skill-slider">
                             <div className="item">
                                 <img src={meter1} alt="" />

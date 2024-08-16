@@ -75,12 +75,15 @@ const NavBar = () => {
                 <a
                   href="https://www.linkedin.com/in/abhijith-abhi-5a7a171b8"
                   target="_blank"
+                  rel="noreferrer"
                 >
                   <img src={navIcon1} alt="" />
                 </a>
+                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid  */}
                 <a href="#">
                   <img src={navIcon2} alt="" />
                 </a>
+                 {/* eslint-disable-next-line jsx-a11y/anchor-is-valid  */}
                 <a href="#">
                   <img src={navIcon3} alt="" />
                 </a>
