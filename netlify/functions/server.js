@@ -21,6 +21,7 @@ const contactEmail = nodemailer.createTransport({
   },
 });
 
+
 contactEmail.verify((error) => {
   if (error) {
     console.log(error);
@@ -30,6 +31,7 @@ contactEmail.verify((error) => {
 });
 
 router.post("/contact", (req, res) => {
+  console.log(req.body, "abhii");
   const name = req.body.firstName + req.body.lastName;
   const email = req.body.email;
   const message = req.body.message;
