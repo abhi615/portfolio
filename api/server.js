@@ -1,8 +1,7 @@
-const express = require("express");
-const router = express.Router();
-const serverless = require("serverless-http");
-const cors = require("cors");
-const nodemailer = require("nodemailer");
+import express from "express";
+import serverless from "serverless-http";
+import cors from "cors";
+import nodemailer from "nodemailer";
 
 // server used to send send emails
 const app = express();
@@ -19,7 +18,6 @@ const contactEmail = nodemailer.createTransport({
     pass: process.env.EMAIL_PASS,
   },
 });
-
 
 contactEmail.verify((error) => {
   if (error) {
@@ -52,6 +50,6 @@ router.post("/contact", (req, res) => {
     }
   });
 });
-app.use("/.netlify/functions/server", router);
+app.use("/api", router);
 
-module.exports.handler = serverless(app);
+export const handler = serverless(app);
