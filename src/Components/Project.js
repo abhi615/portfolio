@@ -66,7 +66,7 @@ export const Projects = () => {
                         <div>
                           <h2>Download My CV</h2>
                           <a href="/B.Abhijith (4).pdf" download="B.Abhijith (4).pdf">
-                            <button className="download_btn">Download Resume</button>
+                            <button className="download_btn">Download CV</button>
                           </a>
                         </div>
                       </Tab.Pane>
