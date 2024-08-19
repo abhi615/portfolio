@@ -1,18 +1,20 @@
 import { useState, useEffect } from "react";
 import { Container, Row, Col } from "react-bootstrap";
+import { HashLink } from "react-router-hash-link";
+import { BrowserRouter as Router } from "react-router-dom";
 import headerImg from "../assets/img/profile.png";
-import { ArrowRightCircle } from 'react-bootstrap-icons';
-import 'animate.css';
-import TrackVisibility from 'react-on-screen';
+import { ArrowRightCircle } from "react-bootstrap-icons";
+import "animate.css";
+import TrackVisibility from "react-on-screen";
 
 export const Banner = () => {
   const [loopNum, setLoopNum] = useState(0);
   const [isDeleting, setIsDeleting] = useState(false);
-  const [text, setText] = useState('');
+  const [text, setText] = useState("");
   const [delta, setDelta] = useState(300 - Math.random() * 100);
   // eslint-disable-next-line no-unused-vars
   const [index, setIndex] = useState(1);
-  const toRotate = [ "Web Developer", "Web Designer", "UI/UX Designer" ];
+  const toRotate = ["Web Developer", "Web Designer", "UI/UX Designer"];
   const period = 2000;
 
   useEffect(() => {
@@ -20,34 +22,38 @@ export const Banner = () => {
       tick();
     }, delta);
 
-    return () => { clearInterval(ticker) };
-     // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, [text,delta])
+    return () => {
+      clearInterval(ticker);
+    };
+    // eslint-disable-next-line react-hooks/exhaustive-deps
+  }, [text, delta]);
 
   const tick = () => {
     let i = loopNum % toRotate.length;
     let fullText = toRotate[i];
-    let updatedText = isDeleting ? fullText.substring(0, text.length - 1) : fullText.substring(0, text.length + 1);
+    let updatedText = isDeleting
+      ? fullText.substring(0, text.length - 1)
+      : fullText.substring(0, text.length + 1);
 
     setText(updatedText);
 
     if (isDeleting) {
-      setDelta(prevDelta => prevDelta / 2);
+      setDelta((prevDelta) => prevDelta / 2);
     }
 
     if (!isDeleting && updatedText === fullText) {
       setIsDeleting(true);
-      setIndex(prevIndex => prevIndex - 1);
+      setIndex((prevIndex) => prevIndex - 1);
       setDelta(period);
-    } else if (isDeleting && updatedText === '') {
+    } else if (isDeleting && updatedText === "") {
       setIsDeleting(false);
       setLoopNum(loopNum + 1);
       setIndex(1);
       setDelta(500);
     } else {
-      setIndex(prevIndex => prevIndex + 1);
+      setIndex((prevIndex) => prevIndex + 1);
     }
-  }
+  };
 
   return (
     <section className="banner" id="home">
@@ -55,25 +61,59 @@ export const Banner = () => {
         <Row className="align-items-center">
           <Col xs={12} md={6} xl={7}>
             <TrackVisibility>
-              {({ isVisible }) =>
-              <div className={isVisible ? "animate__animated animate__fadeIn" : ""}>
-                <span className="tagline">Welcome to my Portfolio</span>
-                <h1>{`Hi! I'm Abhijith`} <span className="txt-rotate" dataPeriod="1000" data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'><span className="wrap">{text}</span></span></h1>
-                  <p>Experienced Frontend Developer with 2+ years crafting responsive websites using React JS, HTML, CSS, and JavaScript. Proficient in computer science fundamentals, cross-functional collaboration, performance optimization, and enhancing user experiences. With a dedication to continuous learning and a collaborative mindset, I am well- equipped to drive projects from conception to deployment, ensuring exceptional quality and on-time delivery</p>
-                  <button onClick={() => console.log('connect')}>Let’s Connect <ArrowRightCircle size={25} /></button>
-              </div>}
+              {({ isVisible }) => (
+                <div
+                  className={
+                    isVisible ? "animate__animated animate__fadeIn" : ""
+                  }
+                >
+                  <span className="tagline">Welcome to my Portfolio</span>
+                  <h1>
+                    {`Hi! I'm Abhijith`}{" "}
+                    <span
+                      className="txt-rotate"
+                      dataPeriod="1000"
+                      data-rotate='[ "Web Developer", "Web Designer", "UI/UX Designer" ]'
+                    >
+                      <span className="wrap">{text}</span>
+                    </span>
+                  </h1>
+                  <p>
+                    Experienced Frontend Developer with 2+ years crafting
+                    responsive websites using React JS, HTML, CSS, and
+                    JavaScript. Proficient in computer science fundamentals,
+                    cross-functional collaboration, performance optimization,
+                    and enhancing user experiences. With a dedication to
+                    continuous learning and a collaborative mindset, I am well-
+                    equipped to drive projects from conception to deployment,
+                    ensuring exceptional quality and on-time delivery
+                  </p>
+                  <Router>
+                    <HashLink to="#connect">
+                      <button onClick={() => console.log("connect")}>
+                        Let’s Connect <ArrowRightCircle size={25} />
+                      </button>
+                    </HashLink>
+                  </Router>
+                </div>
+              )}
             </TrackVisibility>
           </Col>
           <Col xs={12} md={6} xl={5}>
             <TrackVisibility>
-              {({ isVisible }) =>
-                <div className={isVisible ? "animate__animated animate__zoomIn" : ""}>
-                  <img src={headerImg} alt="Header Img"/>
-                </div>}
+              {({ isVisible }) => (
+                <div
+                  className={
+                    isVisible ? "animate__animated animate__zoomIn" : ""
+                  }
+                >
+                  <img src={headerImg} alt="Header Img" />
+                </div>
+              )}
             </TrackVisibility>
           </Col>
         </Row>
       </Container>
     </section>
-  )
-}
+  );
+};
